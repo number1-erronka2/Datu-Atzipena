@@ -1,45 +1,48 @@
 package dambi.restapi.domainobject;
 
 
+import java.util.Date;
+
 import javax.persistence.*;
 
-@Entity(name = "res_users")
-@Table(name = "res_users")
+@Entity(name = "langilea")
+@Table(name = "langilea")
 public class Langilea {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column (name = "User")
+    private String user;
 
-    @Column (name = "active")
-    private boolean active;
+    @Column (name = "E-mail")
+    private String emaila;
 
-    @Column (name = "login")
-    private String login;
+    @Column (name = "Izena")
+    private String izena;
 
-    @Column (name = "company_id")
-    private Integer company_id;
+    @Column (name = "Jaiotze-data")
+    private Date jaiotzeData;
 
-    @Column (name = "partner_id")
-    private Integer partner_id;
+    @Column (name = "Taldea")
+    private int taldea;
 
-    public int getId() {
-        return id;
+    public String getUser() {
+        return user;
     }
 
-    public boolean isActive() {
-        return active;
+    public String getIzena() {
+        return izena;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmaila() {
+        return emaila;
     }
 
-    public Integer getCompany_id() {
-        return company_id;
+    public Date getJaiotzeData() {
+        return jaiotzeData;
     }
 
-    public Integer getPartner_id() {
-        return partner_id;
+    public int getTaldea() {
+        return taldea;
     }
+
 
 }

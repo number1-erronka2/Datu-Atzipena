@@ -1,42 +1,39 @@
 package dambi.restapi.domainobject;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "partida")
+@Table(name = "partida")
 public class Partida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Puntuak")
-    private int puntuak;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "langilea", referencedColumnName = "User")
+    private Langilea langilea;
+
+    @Column(name = "Puntuazioa")
+    private float puntuazioa;
 
     @Column(name = "Data")
     private Date data;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Langilea", referencedColumnName = "login")
-    private Langilea langilea;
 
     public Integer getId() {
         return id;
     }
 
-    public int getPuntuak() {
-        return puntuak;
+    public Langilea getLangilea() {
+        return langilea;
+    }
+
+    public float getPuntuazioa() {
+        return puntuazioa;
     }
 
     public Date getData() {
         return data;
     }
-    
-
-    public Langilea getLangilea() {
-        return langilea;
-    }
-    
 }
