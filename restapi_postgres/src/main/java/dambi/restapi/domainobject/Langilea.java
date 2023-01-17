@@ -8,25 +8,23 @@ import javax.persistence.*;
 @Entity(name = "langilea")
 @Table(name = "langilea")
 public class Langilea {
-    @Id
-    @Column (name = "User")
-    private String user;
 
-    @Column (name = "E-mail")
+    @Column (name = "email")
     private String emaila;
 
-    @Column (name = "Izena")
+    @Column (name = "izena")
     private String izena;
 
-    @Column (name = "Jaiotze-data")
+    @Id
+    @Column (name = "erabiltzailea")
+    private String erabiltzailea;
+
+    @Column (name = "jaiotzedata")
     private Date jaiotzeData;
 
-    @Column (name = "Taldea")
+    @Column (name = "taldea")
     private int taldea;
 
-    public String getUser() {
-        return user;
-    }
 
     public String getIzena() {
         return izena;
@@ -44,5 +42,29 @@ public class Langilea {
         return taldea;
     }
 
+    public String getErabiltzailea() {
+        return erabiltzailea;
+    }
+
+    public void setEmaila(String emaila) {
+        this.emaila = emaila;
+    }
+
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
+
+    public void setJaiotzeData(Date jaiotzeData) {
+        this.jaiotzeData = jaiotzeData;
+    }
+
+    public void setTaldea(int taldea) {
+        this.taldea = taldea;
+    }
+
+    public void setErabiltzailea(String erabiltzailea) {
+        this.erabiltzailea = erabiltzailea;
+    }
+    
 
 }

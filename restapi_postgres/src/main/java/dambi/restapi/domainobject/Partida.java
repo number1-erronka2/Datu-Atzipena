@@ -7,26 +7,23 @@ import javax.persistence.*;
 @Entity(name = "partida")
 @Table(name = "partida")
 public class Partida {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "langilea", referencedColumnName = "User")
+    @JoinColumn(name = "erabiltzailea", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Langilea langilea;
 
-    @Column(name = "Puntuazioa")
+    @Column(name = "puntuazioa")
     private float puntuazioa;
 
-    @Column(name = "Data")
+    @Column(name = "data")
     private Date data;
 
     public Integer getId() {
         return id;
-    }
-
-    public Langilea getLangilea() {
-        return langilea;
     }
 
     public float getPuntuazioa() {
@@ -36,4 +33,26 @@ public class Partida {
     public Date getData() {
         return data;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPuntuazioa(float puntuazioa) {
+        this.puntuazioa = puntuazioa;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Langilea getLangilea() {
+        return langilea;
+    }
+
+    public void setLangilea(Langilea langilea) {
+        this.langilea = langilea;
+    }
+
+   
 }

@@ -5,4 +5,6 @@ import dambi.restapi.domainobject.*;
 
 public interface LangileaRepository extends CrudRepository<Langilea, Integer> {
 
+    Langilea findByIzena(String izena);
+
 }
