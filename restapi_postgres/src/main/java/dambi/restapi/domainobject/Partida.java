@@ -10,7 +10,7 @@ public class Partida {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @JoinColumn(name = "erabiltzailea", nullable = false)
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -22,7 +22,7 @@ public class Partida {
     @Column(name = "data")
     private Date data;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -34,7 +34,7 @@ public class Partida {
         return data;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -54,5 +54,4 @@ public class Partida {
         this.langilea = langilea;
     }
 
-   
 }
