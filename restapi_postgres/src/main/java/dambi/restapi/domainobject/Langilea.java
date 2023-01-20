@@ -5,8 +5,11 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity(name = "langilea")
 @Table(name = "langilea")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  //JSON serialization error not to show 
 public class Langilea {
 
     @Column (name = "email")

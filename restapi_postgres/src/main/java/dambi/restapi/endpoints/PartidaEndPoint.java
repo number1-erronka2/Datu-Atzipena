@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PartidaEndPoint {
     @Autowired
     private PartidaRepository partidaRepository;
+    @Autowired
     private LangileaRepository langileaRepository;
 
     @GetMapping(value = "/getPartidak")
