@@ -1,28 +1,18 @@
-package dambi.restapi.domainobject;
+package dambi.consumerestapi.domainObjects;
 
 import java.util.Date;
 
-import javax.persistence.*;
-
-@Entity(name = "partida")
-@Table(name = "partida")
 public class Partida {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    @JoinColumn(name = "erabiltzailea", nullable = false)
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Integer id;
+
     private Langilea langilea;
 
-    @Column(name = "puntuazioa")
     private float puntuazioa;
 
-    @Column(name = "data")
     private Date data;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -34,7 +24,7 @@ public class Partida {
         return data;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

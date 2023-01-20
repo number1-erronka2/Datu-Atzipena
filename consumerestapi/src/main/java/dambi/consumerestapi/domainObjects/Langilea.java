@@ -1,33 +1,18 @@
-package dambi.restapi.domainobject;
-
+package dambi.consumerestapi.domainObjects;
 
 import java.util.Date;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity(name = "langilea")
-@Table(name = "langilea")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  //JSON serialization error not to show 
 public class Langilea {
 
-    @Column (name = "email")
     private String emaila;
 
-    @Column (name = "izena")
     private String izena;
 
-    @Id
-    @Column (name = "erabiltzailea")
     private String erabiltzailea;
 
-    @Column (name = "jaiotzedata")
     private Date jaiotzeData;
 
-    @Column (name = "taldea")
     private int taldea;
-
 
     public String getIzena() {
         return izena;
@@ -68,6 +53,5 @@ public class Langilea {
     public void setErabiltzailea(String erabiltzailea) {
         this.erabiltzailea = erabiltzailea;
     }
-    
 
 }
