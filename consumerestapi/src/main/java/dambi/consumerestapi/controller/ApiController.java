@@ -10,6 +10,7 @@ import dambi.consumerestapi.domainObjects.Partida;
 import dambi.consumerestapi.repositories.PartidaRepository;
 
 @RestController
+@RequestMapping(path = "/postgresConsumer") 
 public class ApiController {
     
     @Autowired
