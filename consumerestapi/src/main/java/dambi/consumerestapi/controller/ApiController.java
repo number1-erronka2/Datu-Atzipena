@@ -27,16 +27,6 @@ public class ApiController {
     }
 
     /*
-     * 2.Taldearen get Partidak metodoa
-     */
-    @GetMapping("/partidak2")
-    public List<Object> getPartidakAlain() {
-        String url = "http://192.168.65.6:8080/demo/all_Partida";
-        Object[] partidak = restTemplate.getForObject(url, Object[].class);
-        return Arrays.asList(partidak);
-    }
-    
-    /*
      * 3.Taldearen get Partidak metodoa
      */
     @GetMapping("/partidak3")
