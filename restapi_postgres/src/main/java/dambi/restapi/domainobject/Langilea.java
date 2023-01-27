@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Langilea {
 
     @Column (name = "email")
-    private String emaila;
+    private String email;
 
     @Column (name = "izena")
     private String izena;
@@ -23,7 +23,7 @@ public class Langilea {
     private String erabiltzailea;
 
     @Column (name = "jaiotzedata")
-    private Date jaiotzeData;
+    private Date jaiotzedata;
 
     @Column (name = "taldea")
     private int taldea;
@@ -33,12 +33,12 @@ public class Langilea {
         return izena;
     }
 
-    public String getEmaila() {
-        return emaila;
+    public String getEmail() {
+        return email;
     }
 
-    public Date getJaiotzeData() {
-        return jaiotzeData;
+    public Date getJaiotzedata() {
+        return jaiotzedata;
     }
 
     public int getTaldea() {
@@ -49,16 +49,16 @@ public class Langilea {
         return erabiltzailea;
     }
 
-    public void setEmaila(String emaila) {
-        this.emaila = emaila;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setIzena(String izena) {
         this.izena = izena;
     }
 
-    public void setJaiotzeData(Date jaiotzeData) {
-        this.jaiotzeData = jaiotzeData;
+    public void setJaiotzedata(Date jaiotzedata) {
+        this.jaiotzedata = jaiotzedata;
     }
 
     public void setTaldea(int taldea) {
