@@ -31,6 +31,21 @@ public class ApiController {
     }
 
     /**
+     * 1.Taldearen get Partidak metodoa
+     */
+    @GetMapping("/partidak1")
+    public List<Partida> getPartidakMarkel() {
+        List<Partida> partidak = webClientBuilder.build()
+                        .get()
+                        .uri("http://192.168.65.11:8080/api/allPartidak")
+                        .retrieve()
+                        .bodyToFlux(Partida.class)
+                        .collectList()
+                        .block();
+        return partidak;
+    }
+    
+    /**
      * 2.Taldearen get Partidak metodoa
      */
     @GetMapping("/partidak2")
