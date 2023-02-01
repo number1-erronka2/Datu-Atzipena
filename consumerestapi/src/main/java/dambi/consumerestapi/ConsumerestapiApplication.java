@@ -12,7 +12,7 @@ public class ConsumerestapiApplication {
 	public WebClient.Builder getWebClientBuilder(){
 		return WebClient.builder();
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(ConsumerestapiApplication.class, args);
 	}
