@@ -2,56 +2,24 @@ package dambi.consumerestapi.domainObjects;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Langilea {
 
-    private String emaila;
+    private String email;
 
     private String izena;
 
+    @Id
     private String erabiltzailea;
 
-    private Date jaiotzeData;
+    private Date jaiotzedata;
 
     private int taldea;
-
-    public String getIzena() {
-        return izena;
-    }
-
-    public String getEmaila() {
-        return emaila;
-    }
-
-    public Date getJaiotzeData() {
-        return jaiotzeData;
-    }
-
-    public int getTaldea() {
-        return taldea;
-    }
-
-    public String getErabiltzailea() {
-        return erabiltzailea;
-    }
-
-    public void setEmaila(String emaila) {
-        this.emaila = emaila;
-    }
-
-    public void setIzena(String izena) {
-        this.izena = izena;
-    }
-
-    public void setJaiotzeData(Date jaiotzeData) {
-        this.jaiotzeData = jaiotzeData;
-    }
-
-    public void setTaldea(int taldea) {
-        this.taldea = taldea;
-    }
-
-    public void setErabiltzailea(String erabiltzailea) {
-        this.erabiltzailea = erabiltzailea;
-    }
-
 }

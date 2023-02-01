@@ -43,10 +43,10 @@ public class LangileaEndPoint {
 
         try {
             Date jaiotzedata = new SimpleDateFormat("yyyy-MM-dd").parse(jaiotzeData);
-            langilea.setEmaila(email);
+            langilea.setEmail(email);
             langilea.setErabiltzailea(user);
             langilea.setIzena(izena);
-            langilea.setJaiotzeData(jaiotzedata);
+            langilea.setJaiotzedata(jaiotzedata);
             langilea.setTaldea(taldea);
             langileaRepository.save(langilea);
         } catch (Exception e) {
