@@ -1,13 +1,14 @@
-package dambi.consumerestapi.atzipena;
+package dambi.atzipena;
 
 import java.io.InputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ApiRest {
+public class ApiRestAtzipena {
     
     public static JsonNode irakurri(String urlSartutakoa){
         JsonNode jsonNode = null;
@@ -20,11 +21,12 @@ public class ApiRest {
             InputStream inputStream = connection.getInputStream();
             ObjectMapper objectMapper = new ObjectMapper();
             jsonNode = objectMapper.readValue(inputStream, JsonNode.class);
-            System.out.println(jsonNode);
             
             if (!jsonNode.isArray()) {
                 throw new IllegalStateException("Expected array, but got: " + jsonNode.getNodeType());
             }
+        } catch (ConnectException exception) {
+            System.out.println("Errorea ApiRest-era konektatzean:" + exception.getMessage() + " URL:" + urlSartutakoa);
         } catch (Exception e) {
             e.printStackTrace();
         }

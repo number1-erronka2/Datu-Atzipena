@@ -1,4 +1,4 @@
-package dambi.consumerestapi.domainObjects;
+package dambi.domainObjects;
 
 import java.util.Date;
 
