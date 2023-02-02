@@ -10,5 +10,7 @@ public interface PartidaRepository {
     Partida findById(int id);
     List<Partida> findByPuntuazioa(int puntuazioa);
     List<Partida> findByIzena(String erabiltzailea);
+    List<Partida> findByEmail(String email);
     List<Partida> findByTaldea(int taldea);
+
 }

@@ -42,11 +42,19 @@ public class MainController {
 		return partidarepository.findByIzena(erabiltzailea);
 	}
 
+	
+	@GetMapping(path = "/Email/{email}")
+	public @ResponseBody Iterable<Partida> getPartidaFromEmail(@PathVariable String email) {
+		// This returns a JSON or XML with the partida of the langilea with that email
+		return partidarepository.findByEmail(email);
+	}
+
 	@GetMapping(path = "/taldeaZenbakia/{taldea}")
 	public @ResponseBody Iterable<Partida> getPartidaFromTaldea(@PathVariable int taldea) {
 		// This returns a JSON or XML with the partida of the taldea
 		return partidarepository.findByTaldea(taldea);
 	}
 
-	
+
+
 }

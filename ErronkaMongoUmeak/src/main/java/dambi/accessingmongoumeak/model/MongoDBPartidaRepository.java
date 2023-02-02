@@ -68,4 +68,12 @@ public class MongoDBPartidaRepository implements PartidaRepository {
         return partidaCollection.find(Filters.eq("langilea.taldea", taldea)).into(new ArrayList<>());
     }
 
+    //ikusi langile baten partidak email batengatik
+    @Override
+    public List<Partida> findByEmail(String email) {
+        return partidaCollection.find(Filters.eq("langilea.email", email)).into(new ArrayList<>());
+    }
+
+    //ikusi langile baten partidak date ikusita
+
 }
