@@ -1,7 +1,8 @@
 package dambi.atzipena;
 
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.*;
+
 
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
@@ -20,6 +21,7 @@ import dambi.domainObjects.*;
 public class MongoAtzipena {
     private static String strUri = "mongodb://192.168.65.123:27017/";
     private static String strDb = "erronka";
+    private static Logger logger = Logger.getLogger(MongoAtzipena.class.getName());
     
     /**
      * Connect to MongoDB server
@@ -57,11 +59,12 @@ public class MongoAtzipena {
 
                 db.getCollection("part").insertOne(doc);
             }
+            logger.info("Partidak ondo gorde dira MongoDBra.");
             mongo.close();
         } catch (MongoException e) {
-            Logger.getLogger("An error occurred while communicating with the MongoDB server: " + e.getMessage());
+            logger.warn("An error occurred while communicating with the MongoDB server: " + e.getMessage());
         } catch (Exception e) {
-            Logger.getLogger("Unexpected error: " + e.getMessage());
+            logger.error("Unexpected error: " + e.getMessage());
         }
     }
 
@@ -81,11 +84,12 @@ public class MongoAtzipena {
                 db.getCollection("langilea").insertOne(doc);
 
             }
+            logger.info("Langileak ondo gorde dira MongoDBra.");
             mongo.close();
         } catch (MongoException e) {
-            Logger.getLogger("An error occurred while communicating with the MongoDB server: " + e.getMessage());
+            logger.warn("An error occurred while communicating with the MongoDB server: " + e.getMessage());
         } catch (Exception e) {
-            Logger.getLogger("Unexpected error: " + e.getMessage());
+            logger.error("Unexpected error: " + e.getMessage());
         }
     }
 }

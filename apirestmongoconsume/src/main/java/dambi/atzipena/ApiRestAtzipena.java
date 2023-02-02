@@ -5,13 +5,18 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.log4j.*;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ApiRestAtzipena {
+
+    private static Logger logger = Logger.getLogger(ApiRestAtzipena.class.getName());
     
     public static JsonNode irakurri(String urlSartutakoa){
         JsonNode jsonNode = null;
+
         try {
             URL url = new URL(urlSartutakoa);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -26,7 +31,7 @@ public class ApiRestAtzipena {
                 throw new IllegalStateException("Expected array, but got: " + jsonNode.getNodeType());
             }
         } catch (ConnectException exception) {
-            System.out.println("Errorea ApiRest-era konektatzean:" + exception.getMessage() + " URL:" + urlSartutakoa);
+            logger.warn("Errorea ApiRest-era konektatzean:" + exception.getMessage() + " URL:" + urlSartutakoa);
         } catch (Exception e) {
             e.printStackTrace();
         }

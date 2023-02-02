@@ -16,7 +16,7 @@ public class ConsumerestapiApplication {
 	private static String partidakTaldea1= "http://192.168.65.11:8080/api/allPartidak";
 	private static String partidakTaldea2= "http://192.168.65.6:8080/demo/all_Partida";
 	private static String partidakTaldea3= "http://192.168.65.12:8080/demo/get";
-	private static String partidakTaldea4= "http://localhost:800/Partidak/getPartidak";
+	private static String partidakTaldea4= "http://localhost:8080/Partidak/getPartidak";
 	public static void main(String[] args) {
 		//insertLangileak();
 		//insertPartidak(partidakTaldea1);
