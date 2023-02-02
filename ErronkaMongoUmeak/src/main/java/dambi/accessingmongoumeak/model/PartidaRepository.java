@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PartidaRepository {
     List<Partida> findAll();
+    Partida findById(int id);
+    List<Partida> findByPuntuazioa(int puntuazioa);
+    List<Partida> findByIzena(String erabiltzailea);
+    List<Partida> findByTaldea(int taldea);
 }

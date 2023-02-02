@@ -2,6 +2,7 @@ package dambi.accessingmongoumeak.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,32 @@ public class MainController {
 	@GetMapping(path = "/allPartida")
 	public @ResponseBody Iterable<Partida> getAllPartidak() {
 		// This returns a JSON or XML with the partidak
-		System.out.println(partidarepository.findAll());
 		return partidarepository.findAll();
 	}
 
+	@GetMapping(path = "/partida/{id}")
+	public @ResponseBody Partida getPartidaFromId(@PathVariable int id) {
+		// This returns a JSON or XML with the partida of that Id
+		return partidarepository.findById(id);
+	}
 
+	@GetMapping(path = "/puntuacion/{puntuazioa}")
+	public @ResponseBody Iterable<Partida> getPartidaFromPuntuazioa(@PathVariable int puntuazioa) {
+		// This returns a JSON or XML with the partida with a score greater than the given
+		return partidarepository.findByPuntuazioa(puntuazioa);
+	}
+
+	@GetMapping(path = "/izena/{erabiltzailea}")
+	public @ResponseBody Iterable<Partida> getPartidaFromIzena(@PathVariable String erabiltzailea) {
+		// This returns a JSON or XML with the partida of the langilea with that name
+		return partidarepository.findByIzena(erabiltzailea);
+	}
+
+	@GetMapping(path = "/taldeaZenbakia/{taldea}")
+	public @ResponseBody Iterable<Partida> getPartidaFromTaldea(@PathVariable int taldea) {
+		// This returns a JSON or XML with the partida of the taldea
+		return partidarepository.findByTaldea(taldea);
+	}
+
+	
 }
