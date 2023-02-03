@@ -1,7 +1,7 @@
 package dambi.atzipena;
 
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.*;
 
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
@@ -10,7 +10,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
+import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -20,19 +20,20 @@ import dambi.domainObjects.*;
 public class MongoAtzipena {
     private static String strUri = "mongodb://192.168.65.123:27017/";
     private static String strDb = "erronka";
-    
+    private static Logger logger = Logger.getLogger(MongoAtzipena.class.getName());
+
     /**
      * Connect to MongoDB server
      * @return
      */
     public static MongoClient connect() {
         CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(
-                    MongoClientSettings.getDefaultCodecRegistry(),
-                    CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-            MongoClient mongo = MongoClients.create(MongoClientSettings.builder()
-                    .applyConnectionString(new ConnectionString(strUri))
-                    .codecRegistry(pojoCodecRegistry)
-                    .build());
+                MongoClientSettings.getDefaultCodecRegistry(),
+                CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+        MongoClient mongo = MongoClients.create(MongoClientSettings.builder()
+                .applyConnectionString(new ConnectionString(strUri))
+                .codecRegistry(pojoCodecRegistry)
+                .build());
         return mongo;
     }
 
@@ -52,16 +53,21 @@ public class MongoAtzipena {
 
                 Document doc = new Document("_id", partida.getId())
                         .append("data", partida.getData())
-                        .append("langilea", langilea) 
+                        .append("langilea", langilea)
                         .append("puntuazioa", partida.getPuntuazioa());
 
                 db.getCollection("part").insertOne(doc);
             }
+            logger.info("Partidak ondo gorde dira MongoDBra.");
             mongo.close();
-        } catch (MongoException e) {
-            Logger.getLogger("An error occurred while communicating with the MongoDB server: " + e.getMessage());
+        } catch (MongoWriteException e) {
+            if (e.getError().getCode() == 11000) {
+                logger.warn("An error while inserting data to MongoDB: " + e.getMessage());
+            } else {
+                logger.warn("An error occurred with the MongoDB server: " + e.getMessage());
+            }
         } catch (Exception e) {
-            Logger.getLogger("Unexpected error: " + e.getMessage());
+            logger.error("Unexpected error: " + e.getMessage());
         }
     }
 
@@ -81,11 +87,16 @@ public class MongoAtzipena {
                 db.getCollection("langilea").insertOne(doc);
 
             }
+            logger.info("Langileak ondo gorde dira MongoDBra.");
             mongo.close();
-        } catch (MongoException e) {
-            Logger.getLogger("An error occurred while communicating with the MongoDB server: " + e.getMessage());
+        } catch (MongoWriteException e) {
+            if (e.getError().getCode() == 11000) {
+                logger.warn("An error while inserting data to MongoDB: " + e.getMessage());
+            } else {
+                logger.warn("An error occurred with the MongoDB server: " + e.getMessage());
+            }
         } catch (Exception e) {
-            Logger.getLogger("Unexpected error: " + e.getMessage());
+            logger.error("Unexpected error: " + e.getMessage());
         }
     }
 }

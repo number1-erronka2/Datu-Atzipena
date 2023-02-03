@@ -1,0 +1,3 @@
+2023-02-02 12:27:03 WARN  ApiRestAtzipena:37 - Errorea ApiRest-era konektatzean:Connection refused: connect URL:http://localhost:800/Partidak/getPartidak
+2023-02-02 12:32:32 WARN  ApiRestAtzipena:34 - Errorea ApiRest-era konektatzean:Connection refused: connect URL:http://localhost:8080/Partidak/getPartidak
+2023-02-02 12:32:51 WARN  ApiRestAtzipena:34 - Errorea ApiRest-era konektatzean:Connection refused: connect URL:http://localhost:8080/Partidak/getPartidak
