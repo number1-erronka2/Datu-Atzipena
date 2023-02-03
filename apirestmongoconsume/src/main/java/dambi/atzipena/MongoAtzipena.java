@@ -37,7 +37,7 @@ public class MongoAtzipena {
         return mongo;
     }
 
-    public static void insertPartidak(List<Partida> partidak) {
+    public static void insertPartidak(List<Partida> partidak, String jokoIzena) {
         try {
             MongoClient mongo = connect();
             MongoDatabase db = mongo.getDatabase(strDb);
@@ -54,15 +54,16 @@ public class MongoAtzipena {
                 Document doc = new Document("_id", partida.getId())
                         .append("data", partida.getData())
                         .append("langilea", langilea)
-                        .append("puntuazioa", partida.getPuntuazioa());
+                        .append("puntuazioa", partida.getPuntuazioa())
+                        .append("jokoIzena", jokoIzena);
 
-                db.getCollection("part").insertOne(doc);
+                db.getCollection("partida").insertOne(doc);
             }
             logger.info("Partidak ondo gorde dira MongoDBra.");
             mongo.close();
         } catch (MongoWriteException e) {
             if (e.getError().getCode() == 11000) {
-                logger.warn("An error while inserting data to MongoDB: " + e.getMessage());
+                logger.warn("Errorea MongoDB-ra datuak sartzean: " + e.getMessage());
             } else {
                 logger.warn("An error occurred with the MongoDB server: " + e.getMessage());
             }
