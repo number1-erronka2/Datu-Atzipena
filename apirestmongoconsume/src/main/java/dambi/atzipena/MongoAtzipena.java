@@ -63,7 +63,7 @@ public class MongoAtzipena {
             mongo.close();
         } catch (MongoWriteException e) {
             if (e.getError().getCode() == 11000) {
-                logger.warn("An error while inserting data to MongoDB: " + e.getMessage());
+                logger.warn("Errorea MongoDB-ra datuak sartzean: " + e.getMessage());
             } else {
                 logger.warn("An error occurred with the MongoDB server: " + e.getMessage());
             }
