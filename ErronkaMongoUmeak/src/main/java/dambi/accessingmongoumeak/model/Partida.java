@@ -14,14 +14,13 @@ public class Partida {
     int id;
     int puntuazioa;
     Date data;
-    
+
     Langilea langilea;
 
-
     @Override
-    public String toString() { 
-        return String.format("Partida[ID:" + this.getId() + ", Langilea:" + this.getLangilea() + ", Puntuazioa: " + 
-        this.getPuntuazioa() + ", Data: " + this.getData() + "]");
+    public String toString() {
+        return String.format("Partida[ID:" + this.getId() + ", Langilea:" + this.getLangilea() + ", Puntuazioa: " +
+                this.getPuntuazioa() + ", Data: " + this.getData() + "]");
     }
 
 }
