@@ -22,10 +22,10 @@ public class ConsumerestapiApplication {
 		//insertPartidak(partidakTaldea1);
 		//insertPartidak(partidakTaldea2);
 		//insertPartidak(partidakTaldea3);
-		insertPartidak(partidakTaldea4);
+		insertPartidak(partidakTaldea4, "Jonnhy");
 	}
 
-	public static void insertPartidak(String url) {
+	public static void insertPartidak(String url, String jokoIzena) {
 
 		JsonNode jsona = ApiRestAtzipena.irakurri(url);
 
@@ -42,7 +42,7 @@ public class ConsumerestapiApplication {
 			}
 			partidaList.add(partida);
 		}
-		MongoAtzipena.insertPartidak(partidaList);
+		MongoAtzipena.insertPartidak(partidaList, jokoIzena);
 	}
 
 	public static void insertLangileak() {

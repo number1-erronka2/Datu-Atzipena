@@ -37,7 +37,7 @@ public class MongoAtzipena {
         return mongo;
     }
 
-    public static void insertPartidak(List<Partida> partidak) {
+    public static void insertPartidak(List<Partida> partidak, String jokoIzena) {
         try {
             MongoClient mongo = connect();
             MongoDatabase db = mongo.getDatabase(strDb);
@@ -54,9 +54,10 @@ public class MongoAtzipena {
                 Document doc = new Document("_id", partida.getId())
                         .append("data", partida.getData())
                         .append("langilea", langilea)
-                        .append("puntuazioa", partida.getPuntuazioa());
+                        .append("puntuazioa", partida.getPuntuazioa())
+                        .append("jokoIzena", jokoIzena);
 
-                db.getCollection("part").insertOne(doc);
+                db.getCollection("partida").insertOne(doc);
             }
             logger.info("Partidak ondo gorde dira MongoDBra.");
             mongo.close();

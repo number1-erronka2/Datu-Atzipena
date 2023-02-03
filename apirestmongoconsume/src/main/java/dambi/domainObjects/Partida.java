@@ -18,4 +18,6 @@ public class Partida {
     private float puntuazioa;
 
     private Date data;
+
+    private String jokoIzena;
 }
