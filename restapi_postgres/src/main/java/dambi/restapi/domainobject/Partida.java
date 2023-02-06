@@ -3,17 +3,24 @@ package dambi.restapi.domainobject;
 import java.util.Date;
 
 import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data //getter, setter, toString, equals
+@NoArgsConstructor //automatically generates a constructor with no parameters
+@AllArgsConstructor //automatically generates a constructor with all parameters
 @Entity(name = "partida")
 @Table(name = "partida")
 public class Partida {
     
-    @Id
+    @Id //primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @JoinColumn(name = "erabiltzailea", nullable = false)
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Langilea langilea;
 
     @Column(name = "puntuazioa")
@@ -21,37 +28,5 @@ public class Partida {
 
     @Column(name = "data")
     private Date data;
-
-    public int getId() {
-        return id;
-    }
-
-    public float getPuntuazioa() {
-        return puntuazioa;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setPuntuazioa(float puntuazioa) {
-        this.puntuazioa = puntuazioa;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public Langilea getLangilea() {
-        return langilea;
-    }
-
-    public void setLangilea(Langilea langilea) {
-        this.langilea = langilea;
-    }
 
 }

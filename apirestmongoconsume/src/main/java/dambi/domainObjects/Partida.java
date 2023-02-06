@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Partida {
 
-    private Integer id;
+    private int id;
 
     private Langilea langilea;
 

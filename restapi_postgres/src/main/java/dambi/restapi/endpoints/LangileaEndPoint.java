@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dambi.restapi.dbservices.*;
 import dambi.restapi.domainobject.*;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/Langileak")
@@ -45,6 +48,33 @@ public class LangileaEndPoint {
             Date jaiotzedata = new SimpleDateFormat("yyyy-MM-dd").parse(jaiotzeData);
             langilea.setEmail(email);
             langilea.setErabiltzailea(user);
+            langilea.setIzena(izena);
+            langilea.setJaiotzedata(jaiotzedata);
+            langilea.setTaldea(taldea);
+            langileaRepository.save(langilea);
+        } catch (Exception e) {
+            return null;
+        }
+        return langilea;
+    }
+
+    @DeleteMapping(value = "/langileaEzabatu")
+    public @ResponseBody Langilea deleteLangilea(@RequestParam String erabiltzailea) {
+        Langilea langilea = langileaRepository.findByErabiltzailea(erabiltzailea);
+        langileaRepository.delete(langilea);
+        return langilea;
+    }
+
+    /**
+     * Langilea aldatu. Langilearen izena, jaiotze data eta taldea aldatu daitezke.
+     * Langilea erabiltzailearen bidez topatzen da.
+     */
+    @PutMapping(value = "/langileaAldatu")
+    public @ResponseBody Langilea updateLangilea(@RequestParam String erabiltzailea,
+            @RequestParam String izena, @RequestParam String jaiotzeData, @RequestParam int taldea) {
+        Langilea langilea = langileaRepository.findByErabiltzailea(erabiltzailea);
+        try {
+            Date jaiotzedata = new SimpleDateFormat("yyyy-MM-dd").parse(jaiotzeData);
             langilea.setIzena(izena);
             langilea.setJaiotzedata(jaiotzedata);
             langilea.setTaldea(taldea);

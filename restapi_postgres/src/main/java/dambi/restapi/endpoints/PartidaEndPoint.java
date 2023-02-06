@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import dambi.restapi.dbservices.*;
 import dambi.restapi.domainobject.*;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/Partidak")
@@ -29,18 +31,52 @@ public class PartidaEndPoint {
     }
 
     @PostMapping(value = "/partidaBerria")
-    public @ResponseBody Partida addPartidaBerria( @RequestParam String langileaName, @RequestParam float puntuazioa){
+    public @ResponseBody Partida addPartidaBerria(@RequestParam String langileaName, @RequestParam float puntuazioa) {
         Partida partida = new Partida();
         Langilea langilea = new Langilea();
-        langilea = langileaRepository.findByIzena(langileaName);
+
+        try {
+            langilea = langileaRepository.findByIzena(langileaName);
+        } catch (Exception e) {
+            System.out.println("Langilea ez da aurkitu");
+        }
 
         try {
             partida.setLangilea(langilea);
             partida.setPuntuazioa(puntuazioa);
             partida.setData(new Date());
             partidaRepository.save(partida);
-            
+
         } catch (Exception e) {
+            System.out.println("Ezin izan dira partidako datuak gorde");
+        }
+        return partida;
+    }
+
+    @DeleteMapping(value = "/partidaEzabatu")
+    public @ResponseBody Partida deletePartida(@RequestParam int id) {
+        Partida partida = partidaRepository.findById(id);
+        partidaRepository.delete(partida);
+        return partida;
+    }
+
+    /**
+     * Partida baten puntuazioa aldatzen du.
+     */
+    @PutMapping(value = "/partidaAldatu")
+    public @ResponseBody Partida updatePartida(@RequestParam int id, @RequestParam float puntuazioa) {
+        Partida partida = new Partida();
+        try{
+            partida = partidaRepository.findById(id);
+        } catch(Exception e){
+            System.out.println("Partida ez da aurkitu");
+        }
+
+        try {
+            partida.setPuntuazioa(puntuazioa);
+            partidaRepository.save(partida);
+        } catch (Exception e) {
+            System.out.println("Ezin izan dira partidako datuak gorde");
         }
         return partida;
     }
