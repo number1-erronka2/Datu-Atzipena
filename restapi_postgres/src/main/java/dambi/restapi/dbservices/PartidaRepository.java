@@ -7,5 +7,5 @@ public interface PartidaRepository extends CrudRepository<Partida, Integer> {
 
     Iterable<Partida> findAll();
 
-    Iterable<Partida> findByLangilea(Langilea langilea);
+    Partida findById(int id);
 }
