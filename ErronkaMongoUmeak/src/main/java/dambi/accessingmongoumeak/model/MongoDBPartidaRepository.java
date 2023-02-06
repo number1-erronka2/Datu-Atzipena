@@ -1,7 +1,6 @@
 package dambi.accessingmongoumeak.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 
@@ -62,6 +61,12 @@ public class MongoDBPartidaRepository implements PartidaRepository {
         return partidaCollection.find(Filters.eq("langilea.erabiltzailea", erabiltzailea)).into(new ArrayList<>());
     }
 
+    // ikusi joku baten partida guztiak
+    @Override
+    public List<Partida> findByJokoIzena(String jokoIzena) {
+        return partidaCollection.find(Filters.eq("jokoIzena", jokoIzena)).into(new ArrayList<>());
+    }
+
     // ikusi talde baten partidak
     @Override
     public List<Partida> findByTaldea(int taldea) {
@@ -75,9 +80,10 @@ public class MongoDBPartidaRepository implements PartidaRepository {
     }
 
     // ikusi langile baten partidak date ikusita
-    //@Override
-    //public List<Partida> findByData(Date data) {
-        //return partidaCollection.find(Filters.eq("data", data)).into(new ArrayList<>());
-    //}
+    // @Override
+    // public List<Partida> findByData(Date data) {
+    // return partidaCollection.find(Filters.eq("data", data)).into(new
+    // ArrayList<>());
+    // }
 
 }

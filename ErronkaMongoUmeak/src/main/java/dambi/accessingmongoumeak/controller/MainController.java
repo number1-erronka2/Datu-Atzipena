@@ -1,19 +1,12 @@
 package dambi.accessingmongoumeak.controller;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import dambi.accessingmongoumeak.model.MongoDBPartidaRepository;
 import dambi.accessingmongoumeak.model.Partida;
 import dambi.accessingmongoumeak.model.PartidaRepository;
 
@@ -60,6 +53,12 @@ public class MainController {
 	public @ResponseBody Iterable<Partida> getPartidaFromTaldea(@PathVariable int taldea) {
 		// This returns a JSON or XML with the partida of the taldea
 		return partidarepository.findByTaldea(taldea);
+	}
+
+	@GetMapping(path = "/{jokoIzena}")
+	public @ResponseBody Iterable<Partida> getPartidaFromJokuIzena(@PathVariable String jokoIzena) {
+		// This returns a JSON or XML with the partidas of the jokua with the jokua name
+		return partidarepository.findByJokoIzena(jokoIzena);
 	}
 
 	//@GetMapping("/data/{data}")

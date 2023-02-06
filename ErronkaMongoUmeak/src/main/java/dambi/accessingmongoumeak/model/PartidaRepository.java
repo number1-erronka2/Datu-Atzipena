@@ -1,6 +1,5 @@
 package dambi.accessingmongoumeak.model;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -18,6 +17,9 @@ public interface PartidaRepository {
     List<Partida> findByEmail(String email);
 
     List<Partida> findByTaldea(int taldea);
+
+    List<Partida> findByJokoIzena(String jokoIzena);
+
 
     //List<Partida> findByData(Date data);
 
