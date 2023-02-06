@@ -26,7 +26,14 @@ public class LangileaEndPoint {
 
     @GetMapping(value = "/getLangileak")
     public Iterable<Langilea> getLangileDenak() {
-        Iterable<Langilea> langileak = langileaRepository.findAll();
+        Iterable<Langilea> langileak = null;
+        try {
+            langileak = langileaRepository.findAll();
+        } catch (Exception e) {
+            System.out.println("Ezin izan dira langileak bistaratu: " + e);
+            return null;
+        }
+        
         return langileak;
     }
 
@@ -53,6 +60,7 @@ public class LangileaEndPoint {
             langilea.setTaldea(taldea);
             langileaRepository.save(langilea);
         } catch (Exception e) {
+            System.out.println("Ezin izan da langile berria sortu : " + e);
             return null;
         }
         return langilea;
@@ -60,8 +68,14 @@ public class LangileaEndPoint {
 
     @DeleteMapping(value = "/langileaEzabatu")
     public @ResponseBody Langilea deleteLangilea(@RequestParam String erabiltzailea) {
-        Langilea langilea = langileaRepository.findByErabiltzailea(erabiltzailea);
-        langileaRepository.delete(langilea);
+        Langilea langilea = new Langilea();
+        try {
+            langilea = langileaRepository.findByErabiltzailea(erabiltzailea);
+            langileaRepository.delete(langilea);
+        } catch (Exception e) {
+            System.out.println("Ezin izan da langilea ezabatu: " + e);
+            return null;
+        }
         return langilea;
     }
 
@@ -80,6 +94,7 @@ public class LangileaEndPoint {
             langilea.setTaldea(taldea);
             langileaRepository.save(langilea);
         } catch (Exception e) {
+            System.out.println("Ezin izan da langilea aldatu: " + e);
             return null;
         }
         return langilea;

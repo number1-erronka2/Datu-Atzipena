@@ -26,7 +26,13 @@ public class PartidaEndPoint {
 
     @GetMapping(value = "/getPartidak")
     public Iterable<Partida> getPartidaDenak() {
-        Iterable<Partida> partidak = partidaRepository.findAll();
+        Iterable<Partida> partidak = null;
+        try {
+            partidak = partidaRepository.findAll();
+        } catch (Exception e) {
+            System.out.println("Ezin izan dira partidak bistaratu: " + e);
+            return null;
+        }
         return partidak;
     }
 
@@ -55,8 +61,14 @@ public class PartidaEndPoint {
 
     @DeleteMapping(value = "/partidaEzabatu")
     public @ResponseBody Partida deletePartida(@RequestParam int id) {
-        Partida partida = partidaRepository.findById(id);
-        partidaRepository.delete(partida);
+        Partida partida = new Partida();
+        try {
+            partida = partidaRepository.findById(id);
+            partidaRepository.delete(partida);
+        } catch (Exception e) {
+            System.out.println("Ezin izan da partida ezabatu: " + e);
+            return null;
+        }
         return partida;
     }
 
