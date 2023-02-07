@@ -20,7 +20,7 @@ public interface PartidaRepository {
 
     List<Partida> findByJokoIzena(String jokoIzena);
 
-
+    public long delete(int _id);
     //List<Partida> findByData(Date data);
 
 }

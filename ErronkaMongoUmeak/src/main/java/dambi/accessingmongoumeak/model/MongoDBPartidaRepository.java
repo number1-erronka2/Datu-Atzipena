@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 
+import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mongodb.ReadConcern;
 import com.mongodb.ReadPreference;
@@ -78,6 +82,13 @@ public class MongoDBPartidaRepository implements PartidaRepository {
     public List<Partida> findByEmail(String email) {
         return partidaCollection.find(Filters.eq("langilea.email", email)).into(new ArrayList<>());
     }
+
+    @Override
+    public long delete(int _id) {
+        return partidaCollection.deleteMany(eq("_id", _id)).getDeletedCount();
+    }
+
+ 
 
     // ikusi langile baten partidak date ikusita
     // @Override

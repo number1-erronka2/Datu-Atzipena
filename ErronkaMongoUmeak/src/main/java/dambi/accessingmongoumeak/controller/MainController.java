@@ -1,6 +1,7 @@
 package dambi.accessingmongoumeak.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +62,21 @@ public class MainController {
 		return partidarepository.findByJokoIzena(jokoIzena);
 	}
 
+	@Autowired
+	private PartidaRepository partidaRepository;
+	
+	@DeleteMapping(path = "/delete/{_id}")
+	public @ResponseBody long deletePartida(@PathVariable int _id) {
+		try {
+			long zenbat = partidaRepository.delete(_id);
+			return zenbat;
+		} catch (Exception ex) {
+			System.out.println("Errorea " + _id + " partida ezabatzerakoan.");
+		}
+		return _id;
+	}
+	
+	
 	//@GetMapping("/data/{data}")
 	//public ResponseEntity<List<Partida>> getPartidaFromDate(
 	//		@PathVariable("data") @DateTimeFormat(pattern = "yyyy-MM-dd") Date data) {
