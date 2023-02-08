@@ -42,6 +42,3 @@ This project showcases several features of MongoDB:
 And some other cool stuff:
 - You can change the default Spring Boot logo by adding a banner.txt file in your properties.
 - You don't have to use Spring Data MongoDB. The MongoDB driver is more flexible and already provides everything you need to code efficiently and optimise your queries correctly.
-
-## Author
-- Maxime Beugnet @ MongoDB.
