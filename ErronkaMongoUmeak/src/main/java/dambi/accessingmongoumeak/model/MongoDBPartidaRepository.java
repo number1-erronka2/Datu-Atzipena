@@ -8,9 +8,6 @@ import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mongodb.ReadConcern;
 import com.mongodb.ReadPreference;
@@ -88,7 +85,11 @@ public class MongoDBPartidaRepository implements PartidaRepository {
         return partidaCollection.deleteMany(eq("_id", _id)).getDeletedCount();
     }
 
- 
+    @Override
+    public Partida save(Partida partida) {
+        partidaCollection.insertOne(partida);
+        return partida;
+    }
 
     // ikusi langile baten partidak date ikusita
     // @Override

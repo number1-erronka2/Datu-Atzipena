@@ -21,6 +21,8 @@ public interface PartidaRepository {
     List<Partida> findByJokoIzena(String jokoIzena);
 
     public long delete(int _id);
+
+    Partida save(Partida partida);
     //List<Partida> findByData(Date data);
 
 }
