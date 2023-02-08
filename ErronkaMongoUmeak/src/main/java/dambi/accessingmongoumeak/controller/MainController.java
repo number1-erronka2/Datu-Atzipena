@@ -5,11 +5,11 @@ import java.util.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,6 @@ import dambi.accessingmongoumeak.model.Langilea;
 import dambi.accessingmongoumeak.model.LangileaRepository;
 import dambi.accessingmongoumeak.model.Partida;
 import dambi.accessingmongoumeak.model.PartidaRepository;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController // This means that this class is a Controller baina @Controller bakarrik
 				// jarrita, PUT eta DELETEak ez dabiz
@@ -88,16 +87,14 @@ public class MainController {
 		return _id;
 	}
 
-
 	@PostMapping(value = "/partida")
-	public Partida savePartida(@Valid  int id, int puntuazioa,  String jokoIzena,String Izena) {
+	public Partida savePartida(@Valid int id, int puntuazioa, String jokoIzena, String Izena) {
 		try {
 			Partida partida = new Partida();
 			partida.setId(id);
 			partida.setPuntuazioa(puntuazioa);
 			partida.setData(new Date());
 			partida.setJokoIzena(jokoIzena);
-
 
 			Langilea langilea = langileaRepository.findByIzena(Izena);
 			partida.setLangilea(langilea);
@@ -109,6 +106,19 @@ public class MainController {
 		}
 	}
 
+	@PutMapping(value = "/editPartida")
+	public Partida editPartida(@Valid int id, int puntuazioa) {
+		try {
+			Partida partida = new Partida();
+			partida = partidaRepository.findById(id);
+			partida.setPuntuazioa(puntuazioa);
 
+			partidaRepository.update(partida);
+			return partida;
+		} catch (Exception ex) {
+			return null;
+		}
+
+	}
 
 }

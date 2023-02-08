@@ -23,6 +23,9 @@ public interface PartidaRepository {
     public long delete(int _id);
 
     Partida save(Partida partida);
+
+    Partida update(Partida partida);
     //List<Partida> findByData(Date data);
 
+    
 }
