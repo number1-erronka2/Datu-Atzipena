@@ -3,7 +3,7 @@ package dambi;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import javax.json.JsonException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,13 +18,13 @@ public class ConsumerestapiApplication {
 	private static String partidakTaldea1 = "http://192.168.65.11:8080/api/allPartidak";
 	private static String partidakTaldea2 = "http://192.168.65.6:8080/demo/all_Partida";
 	private static String partidakTaldea3 = "http://192.168.65.12:8080/demo/get";
-	private static String partidakTaldea4 = "http://localhost:8080/Partidak/getPartidak";
+	private static String partidakTaldea4 = "http://192.168.65.123:8080/Partidak/getPartidak";
 
 	public static void main(String[] args) {
 		insertLangileak();
-		insertPartidak(partidakTaldea1, "Taldea1");
-		insertPartidak(partidakTaldea2, "Taldea2");
-		insertPartidak(partidakTaldea3, "Taldea3");
+		// insertPartidak(partidakTaldea1, "Taldea1");
+		// insertPartidak(partidakTaldea2, "Taldea2");
+		// insertPartidak(partidakTaldea3, "Taldea3");
 		insertPartidak(partidakTaldea4, "Jonnhy");
 	}
 
@@ -39,7 +39,7 @@ public class ConsumerestapiApplication {
 			for (JsonNode element : jsona) {
 				try {
 					partida = mapper.treeToValue(element, Partida.class);
-				} catch (JsonProcessingException e) {
+				} catch (JsonException e) {
 					logger.error("Errorea jsona irakurtzean: " + e.getMessage());
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
@@ -53,22 +53,26 @@ public class ConsumerestapiApplication {
 	}
 
 	public static void insertLangileak() {
-		JsonNode jsona = ApiRestAtzipena.irakurri("http://localhost:8080/Langileak/getLangileak");
+		try {
+			JsonNode jsona = ApiRestAtzipena.irakurri("http://192.168.65.123:8080/Langileak/getLangileak");
 
-		List<Langilea> langileakList = new ArrayList<>();
-		ObjectMapper mapper = new ObjectMapper();
-		Langilea langilea = null;
-		for (JsonNode element : jsona) {
-			try {
-				langilea = mapper.treeToValue(element, Langilea.class);
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+			List<Langilea> langileakList = new ArrayList<>();
+			ObjectMapper mapper = new ObjectMapper();
+			Langilea langilea = null;
+			for (JsonNode element : jsona) {
+				try {
+					langilea = mapper.treeToValue(element, Langilea.class);
+				} catch (JsonException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				}
+				langileakList.add(langilea);
 			}
-			langileakList.add(langilea);
+			MongoAtzipena.insertLangileak(langileakList);
+		} catch (Exception e) {
+			logger.warn("Errorea json partida irakurtzean: " + e.getMessage());
 		}
-		MongoAtzipena.insertLangileak(langileakList);
 	}
 
 }
