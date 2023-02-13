@@ -56,8 +56,13 @@ public class MongoAtzipena {
                         .append("langilea", langilea)
                         .append("puntuazioa", partida.getPuntuazioa())
                         .append("jokoIzena", jokoIzena);
-
-                db.getCollection("partida").insertOne(doc);
+                try {
+                    db.getCollection("partida").insertOne(doc);
+                } catch (MongoWriteException e) {
+                    if (e.getError().getCode() == 11000) {
+                        logger.warn("Datuak existitzen dira: " + e.getMessage());
+                    } 
+                }
             }
             logger.info("Partidak ondo gorde dira MongoDBra.");
             mongo.close();
@@ -84,9 +89,13 @@ public class MongoAtzipena {
                         .append("izena", langilea.getIzena())
                         .append("jaiotzedata", langilea.getJaiotzedata())
                         .append("taldea", langilea.getTaldea());
-
-                db.getCollection("langilea").insertOne(doc);
-
+                try {
+                    db.getCollection("langilea").insertOne(doc);
+                } catch (MongoWriteException e) {
+                    if (e.getError().getCode() == 11000) {
+                        logger.warn("Datuak existitzen dira: " + e.getMessage());
+                    } 
+                }
             }
             logger.info("Langileak ondo gorde dira MongoDBra.");
             mongo.close();
