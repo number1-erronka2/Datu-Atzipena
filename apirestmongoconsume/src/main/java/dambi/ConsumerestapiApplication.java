@@ -15,17 +15,17 @@ import dambi.domainObjects.*;
 public class ConsumerestapiApplication {
 	private static Logger logger = Logger.getLogger(ConsumerestapiApplication.class.getName());
 
-	private static String partidakTaldea1 = "http://192.168.65.11:8080/api/allPartidak";
-	private static String partidakTaldea2 = "http://192.168.65.6:8080/demo/all_Partida";
-	private static String partidakTaldea3 = "http://192.168.65.12:8080/demo/get";
-	private static String partidakTaldea4 = "http://192.168.65.123:8080/Partidak/getPartidak";
+	private static String partidakTaldea1 = "http://192.168.65.11:8080/api/allPartidak"; //ondo
+	private static String partidakTaldea2 = "http://192.168.65.22:8080/demo/all_Partida"; //ondo
+	private static String partidakTaldea3 = "http://192.168.65.12:8080/proba/getCollectionsT3"; //ez daka ezebe 
+	private static String partidakTaldea4 = "http://192.168.65.123:8080/Partidak/getPartidak"; //ondo
 
 	public static void main(String[] args) {
-		insertLangileak();
-		// insertPartidak(partidakTaldea1, "Taldea1");
-		// insertPartidak(partidakTaldea2, "Taldea2");
-		// insertPartidak(partidakTaldea3, "Taldea3");
-		insertPartidak(partidakTaldea4, "Jonnhy");
+		//insertLangileak();
+		//insertPartidak(partidakTaldea1, "MahiKingdom");
+		//insertPartidak(partidakTaldea2, "Taldea2");
+		//insertPartidak(partidakTaldea3, "Pouni");
+		insertPartidak(partidakTaldea4, "Johnny");
 	}
 
 	public static void insertPartidak(String url, String jokoIzena) {
