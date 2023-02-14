@@ -22,7 +22,7 @@ public class ConsumerestapiApplication {
 
 	public static void main(String[] args) {
 		//insertLangileak();
-		//insertPartidak(partidakTaldea1, "MahiKingdom");
+		insertPartidak(partidakTaldea1, "MahiKingdom");
 		//insertPartidak(partidakTaldea2, "Taldea2");
 		//insertPartidak(partidakTaldea3, "Pouni");
 		insertPartidak(partidakTaldea4, "Johnny");

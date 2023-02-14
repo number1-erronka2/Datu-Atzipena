@@ -18,13 +18,13 @@ public class Langilea {
     String email;
     String izena;
     String erabiltzailea;
-    Date jaiotzedata;
+    Date jaiotzadata;
 
     @Override
     public String toString() {
         return "Langilea[E-mail:" + this.getEmail() + ", izena: " + this.getIzena() + ", user:"
                 + this.getErabiltzailea()
-                + ", jaiotza-data:" + this.getJaiotzedata() + ", taldea:" + this.getTaldea() + "]";
+                + ", jaiotza-data:" + this.getJaiotzadata() + ", taldea:" + this.getTaldea() + "]";
     }
 
 }

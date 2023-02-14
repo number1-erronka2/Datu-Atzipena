@@ -48,7 +48,7 @@ public class MongoAtzipena {
                 langilea.setEmail(partida.getLangilea().getEmail());
                 langilea.setErabiltzailea(partida.getLangilea().getErabiltzailea());
                 langilea.setIzena(partida.getLangilea().getIzena());
-                langilea.setJaiotzedata(partida.getLangilea().getJaiotzedata());
+                langilea.setJaiotzadata(partida.getLangilea().getJaiotzadata());
                 langilea.setTaldea(partida.getLangilea().getTaldea());
 
                 Document doc = new Document("_id", partida.getId())
@@ -87,7 +87,7 @@ public class MongoAtzipena {
                 Document doc = new Document("email", langilea.getEmail())
                         .append("erabiltzailea", langilea.getErabiltzailea())
                         .append("izena", langilea.getIzena())
-                        .append("jaiotzedata", langilea.getJaiotzedata())
+                        .append("jaiotzadata", langilea.getJaiotzadata())
                         .append("taldea", langilea.getTaldea());
                 try {
                     db.getCollection("langilea").insertOne(doc);

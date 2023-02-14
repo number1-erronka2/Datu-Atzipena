@@ -56,7 +56,7 @@ public class LangileaEndPoint {
             langilea.setEmail(email);
             langilea.setErabiltzailea(user);
             langilea.setIzena(izena);
-            langilea.setJaiotzedata(jaiotzedata);
+            langilea.setJaiotzadata(jaiotzedata);
             langilea.setTaldea(taldea);
             langileaRepository.save(langilea);
         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class LangileaEndPoint {
         try {
             Date jaiotzedata = new SimpleDateFormat("yyyy-MM-dd").parse(jaiotzeData);
             langilea.setIzena(izena);
-            langilea.setJaiotzedata(jaiotzedata);
+            langilea.setJaiotzadata(jaiotzedata);
             langilea.setTaldea(taldea);
             langileaRepository.save(langilea);
         } catch (Exception e) {

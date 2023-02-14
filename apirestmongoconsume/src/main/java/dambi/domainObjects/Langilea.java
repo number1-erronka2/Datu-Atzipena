@@ -17,7 +17,7 @@ public class Langilea {
 
     private String erabiltzailea;
 
-    private Date jaiotzedata;
+    private Date jaiotzadata;
 
     private int taldea;
 }

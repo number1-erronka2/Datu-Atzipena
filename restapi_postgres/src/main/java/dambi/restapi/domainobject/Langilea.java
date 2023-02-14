@@ -29,8 +29,8 @@ public class Langilea {
     @Column (name = "erabiltzailea")
     private String erabiltzailea;
 
-    @Column (name = "jaiotzedata")
-    private Date jaiotzedata;
+    @Column (name = "jaiotzadata")
+    private Date jaiotzadata;
 
     @Column (name = "taldea")
     private int taldea;
