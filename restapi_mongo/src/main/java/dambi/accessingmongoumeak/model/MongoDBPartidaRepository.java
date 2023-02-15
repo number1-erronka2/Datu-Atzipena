@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
